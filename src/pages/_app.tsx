@@ -1,5 +1,6 @@
 import '~/styles/global.css'
 
+import { Space_Grotesk, Space_Mono } from '@next/font/google'
 import type { AppProps } from 'next/app'
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
 import { lazy } from 'react'
@@ -30,6 +31,18 @@ const serif = PT_Serif({
   weight: ['400', '700'],
 })
 
+const spaceMono = Space_Mono({
+  weight: '700',
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  weight: '700',
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 export default function App({
   Component,
   pageProps,
@@ -43,6 +56,8 @@ export default function App({
             --font-family-sans: ${sans.style.fontFamily};
             --font-family-serif: ${serif.style.fontFamily};
             --font-family-mono: ${mono.style.fontFamily};
+            --spaceMono-font: ${spaceMono.style.fontFamily};
+            --spaceGrotesk-font: ${spaceGrotesk.style.fontFamily};
           }
         `}
       </style>
