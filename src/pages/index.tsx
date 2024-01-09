@@ -55,7 +55,7 @@ export default function IndexPage(
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="w-full h-screen bg-black selection:text-primary selection:bg-accent">
+      <main className="w-full h-full pb-16 bg-black selection:text-primary selection:bg-accent">
         <section id="hero" className="container mx-auto">
           <motion.div
             initial={{
