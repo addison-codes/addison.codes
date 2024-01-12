@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const config = {
   images: {
-    remotePatterns: [{ hostname: 'cdn.sanity.io' }, { hostname: 'i.scdn.co' }],
+    remotePatterns: [
+      { hostname: 'cdn.sanity.io' },
+      { hostname: 'i.scdn.co' },
+      { hostname: 'source.unsplash.com' },
+    ],
   },
 }
 
