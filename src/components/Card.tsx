@@ -6,18 +6,16 @@ import { formatDate } from '~/utils'
 
 export default function Card({ post }: { post: Post }) {
   return (
-    <div className="max-w-sm border-4 border-accent rounded-lg shadow bg-primary">
+    <div className="max-w-sm rounded-lg shadow bg-primary">
       <a href={`/post/${post.slug.current}`}>
-        {post.mainImage ? (
+        {post.mainImage && (
           <Image
-            className="rounded-t-lg"
+            className="rounded-t-md"
             src={urlForImage(post.mainImage).width(500).height(300).url()}
             height={300}
             width={500}
             alt=""
           />
-        ) : (
-          <div />
         )}
       </a>
       <div className="p-5">

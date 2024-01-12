@@ -62,7 +62,13 @@ export default function ProjectSlugRoute(
     useCdn: false,
   })
 
-  const SampleImageComponent = ({ value, isInline }) => {
+  const SampleImageComponent = ({
+    value,
+    isInline,
+  }: {
+    value: any
+    isInline: Boolean
+  }) => {
     const { width, height } = getImageDimensions(value)
     return (
       <img
@@ -268,7 +274,7 @@ export const getStaticPaths = async () => {
   const slugs = await client.fetch(postSlugsQuery)
 
   return {
-    paths: slugs?.map(({ slug }) => `/post/${slug}`) || [],
+    paths: slugs?.map(({ slug }: { slug: Text }) => `/post/${slug}`) || [],
     fallback: 'blocking',
   }
 }

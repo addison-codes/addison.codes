@@ -7,7 +7,11 @@ import { Cursor, useTypewriter } from 'react-simple-typewriter'
 
 import Card from '~/components/Card'
 import Container from '~/components/Container'
+import Footer from '~/components/Footer'
+import Heading from '~/components/Heading'
 import Logo from '~/components/Logo'
+import Section from '~/components/Section'
+import SpotifyNowPlaying from '~/components/SpotifyNowPlaying'
 import Welcome from '~/components/Welcome'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
@@ -56,7 +60,7 @@ export default function IndexPage(
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="w-full h-full pb-16 bg-black selection:text-primary selection:bg-accent">
-        <section id="hero" className="container mx-auto">
+        <section id="hero" className="container mx-auto mb-48">
           <motion.div
             initial={{
               y: 800,
@@ -114,14 +118,18 @@ export default function IndexPage(
             </div>
           </div>
         </section>
-        <section className="container flex mx-auto mt-24">
+        <Section heading="Latest Things I've Written">
           {posts.length ? (
             posts.map((post) => <Card key={post._id} post={post} />)
           ) : (
             <p>No posts :/</p>
           )}
-        </section>
+        </Section>
+        <Section heading="Current Media I Like">
+          <SpotifyNowPlaying />
+        </Section>
       </main>
+      <Footer />
     </>
   )
 }
