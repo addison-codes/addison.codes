@@ -10,9 +10,11 @@ import Container from '~/components/Container'
 import Footer from '~/components/Footer'
 import Heading from '~/components/Heading'
 import Logo from '~/components/Logo'
+import ParallaxText from '~/components/ParallaxText'
 import Section from '~/components/Section'
 import SpotifyNowPlaying from '~/components/SpotifyNowPlaying'
 import Welcome from '~/components/Welcome'
+import getMyPosts from '~/lib/DevToAPI'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import { getPosts, type Post, postsQuery } from '~/lib/sanity.queries'
@@ -20,17 +22,20 @@ import type { SharedPageProps } from '~/pages/_app'
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
-    posts: Post[]
+    sanityPosts: Post[]
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const posts = await getPosts(client)
+  const sanityPosts = await getPosts(client)
+
+  const devToPosts = await getMyPosts()
+  console.log('devposts', devToPosts)
 
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      posts,
+      sanityPosts,
     },
   }
 }
@@ -38,7 +43,7 @@ export const getStaticProps: GetStaticProps<
 export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const [posts] = useLiveQuery<Post[]>(props.posts, postsQuery)
+  const [posts] = useLiveQuery<Post[]>(props.sanityPosts, postsQuery)
   const [text, count] = useTypewriter({
     words: [
       'Travel',
@@ -118,6 +123,19 @@ export default function IndexPage(
             </div>
           </div>
         </section>
+        <ParallaxText baseVelocity={3}>
+          <span className="text-primary">
+            Development Design Software Architecture&nbsp;
+          </span>
+        </ParallaxText>
+        <ParallaxText baseVelocity={-3}>
+          <span className="text-accent">
+            ソフトウェア開発 | ウェブデザイン | プログラミング
+          </span>
+        </ParallaxText>
+        <ParallaxText baseVelocity={2}>
+          <span className="text-secondary">Addison.Codes Addison.Codes</span>
+        </ParallaxText>
         <Section heading="Latest Things I've Written">
           {posts.length ? (
             posts.map((post) => <Card key={post._id} post={post} />)

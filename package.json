@@ -14,6 +14,7 @@
     "singleQuote": true
   },
   "dependencies": {
+    "@motionone/utils": "^10.17.0",
     "@next/font": "^14.0.4",
     "@portabletext/react": "3.0.11",
     "@sanity/asset-utils": "^1.3.0",
