@@ -5,7 +5,7 @@ type Props = {}
 const Footer = (props: Props) => {
   return (
     <footer className="bg-accent flex mx-auto pt-16 pb-8">
-      <div className="container">
+      <div className="container mx-auto">
         <p className="text-xl text-black flex items-center justify-center">
           Made with
           <svg
