@@ -31,26 +31,18 @@ const SpotifyNowPlaying = () => {
       <div>
         {loading && (
           <div>
-            <div className="bg-primary p-8 rounded-lg shadow-md w-80">
-              <h3 className="text-lg mb-6 text-black text-center font-bold">
+            <div className="p-8 rounded-lg shadow-md bg-primary w-80">
+              <h3 className="mb-6 text-lg font-bold text-center text-black">
                 Loading...
               </h3>
-              {/* Album Cover */}
-              {/* <Image
-                src={result.albumImageUrl}
-                alt={`${result.title} album art`}
-                width={256}
-                height={256}
-                className="w-64 h-64 mx-auto rounded-lg mb-4 shadow-lg shadow-teal-50"
-              /> */}
               {/* Song Title */}
-              <h2 className="text-2xl font-bold text-accent text-center">
+              <h2 className="text-2xl font-bold text-center text-accent">
                 <a href={'#'} target="_blank">
                   Song Title
                 </a>
               </h2>
               {/* Artist Name */}
-              <p className="text-black text-sm text-center">by Artist</p>
+              <p className="text-sm text-center text-black">by Artist</p>
               <div className="flex justify-center mt-6">
                 <SpotifyLogo />
               </div>
@@ -59,8 +51,8 @@ const SpotifyNowPlaying = () => {
         )}
         {result.isPlaying ? (
           <div>
-            <div className="bg-primary p-8 rounded-lg shadow-md w-80">
-              <h3 className="text-lg mb-6 text-black text-center font-bold">
+            <div className="p-8 rounded-lg shadow-md bg-primary w-80">
+              <h3 className="mb-6 text-lg font-bold text-center text-black">
                 I&apos;m currently hearing this:
               </h3>
               {/* Album Cover */}
@@ -69,23 +61,23 @@ const SpotifyNowPlaying = () => {
                 alt={`${result.title} album art`}
                 width={256}
                 height={256}
-                className="w-64 h-64 mx-auto rounded-lg mb-4 shadow-lg shadow-teal-50"
+                className="w-64 h-64 mx-auto mb-4 rounded-lg shadow-lg shadow-teal-50"
               />
               {/* Song Title */}
-              <h2 className="text-2xl font-bold text-accent text-center">
+              <h2 className="text-2xl font-bold text-center text-accent">
                 <a href={result.songUrl} target="_blank">
                   {result.title}
                 </a>
               </h2>
               {/* Artist Name */}
-              <p className="text-black mt-4 text-sm text-center">
+              <p className="mt-4 text-sm text-center text-black">
                 by {result.artist}
               </p>
-              <div className="flex flex-col gap-4 items-center mt-4">
+              <div className="flex flex-col items-center gap-4 mt-4">
                 <SpotifyLogo />
                 <a
                   href="#"
-                  className="text-center underline text-black text-xs "
+                  className="text-xs text-center text-black underline "
                 >
                   See how this works
                 </a>
@@ -94,8 +86,8 @@ const SpotifyNowPlaying = () => {
           </div>
         ) : (
           <div>
-            <div className="bg-primary p-8 rounded-lg shadow-md w-80">
-              <h3 className="text-lg mb-6 text-black text-center font-bold">
+            <div className="p-8 rounded-lg shadow-md bg-primary w-80">
+              <h3 className="mb-6 text-lg font-bold text-center text-black">
                 One of my recent favorite tracks:
               </h3>
               {/* Album Cover */}
@@ -104,23 +96,23 @@ const SpotifyNowPlaying = () => {
                 alt={`${result.title} album art`}
                 width={256}
                 height={256}
-                className="w-64 h-64 mx-auto rounded-lg mb-4 shadow-lg shadow-teal-50"
+                className="w-64 h-64 mx-auto mb-4 rounded-lg shadow-lg shadow-teal-50"
               />
               {/* Song Title */}
-              <h2 className="text-2xl font-bold text-accent text-center">
+              <h2 className="text-2xl font-bold text-center text-accent">
                 <a href={result.songUrl} target="_blank">
                   {result.title}
                 </a>
               </h2>
               {/* Artist Name */}
-              <p className="text-black mt-4 text-sm text-center">
+              <p className="mt-4 text-sm text-center text-black">
                 {result.artist}
               </p>
-              <div className="flex flex-col gap-4 items-center mt-4">
+              <div className="flex flex-col items-center gap-4 mt-4">
                 <SpotifyLogo />
                 <a
                   href="#"
-                  className="text-center underline text-black text-xs "
+                  className="text-xs text-center text-black underline "
                 >
                   See how this works
                 </a>

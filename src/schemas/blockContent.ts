@@ -59,5 +59,8 @@ export default defineType({
     defineArrayMember({
       type: 'image',
     }),
+    defineArrayMember({
+      type: 'code',
+    }),
   ],
 })
