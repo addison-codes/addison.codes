@@ -4,9 +4,6 @@ import { useEffect, useState } from 'react'
 import getTrackItem from '~/lib/SpotifyAPI'
 
 import SpotifyLogo from './SpotifyLogo'
-// import SpotifyLogo from "./SpotifyLogo";
-// import SpotifyPlayingAnimation from "./SpotifyPlayingAnimation";
-
 interface NowPlayingResult {
   isPlaying: boolean
   title: string
