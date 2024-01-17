@@ -6,6 +6,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { createClient } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { atelierDuneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
 import Container from '~/components/Container'
 import Footer from '~/components/Footer'
@@ -64,7 +66,7 @@ export default function ProjectSlugRoute(
     useCdn: false,
   })
 
-  const SampleImageComponent = ({
+  const ImageComponent = ({
     value,
     isInline,
   }: {
@@ -94,10 +96,32 @@ export default function ProjectSlugRoute(
       />
     )
   }
+  const CodeComponent = ({ value }: { value: any }) => {
+    return (
+      <div>
+        <pre>
+          <div className="flex justify-between ">
+            <p className="m-0 mt-2">
+              <span className="m-0 text-xl font-bold">.{value.language}</span>
+            </p>
+          </div>
+          <SyntaxHighlighter
+            language={value.language}
+            style={atelierDuneDark}
+            showLineNumbers
+            wrapLongLines
+          >
+            {value.code}
+          </SyntaxHighlighter>
+        </pre>
+      </div>
+    )
+  }
 
   const components = {
     types: {
-      image: SampleImageComponent,
+      image: ImageComponent,
+      code: CodeComponent,
       // Any other custom types you have in your content
       // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
     },
@@ -112,7 +136,7 @@ export default function ProjectSlugRoute(
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="pb-16 lg:pb-24 bg-secondary dark:bg-gray-900 antialiased">
+      <main className="pb-16 antialiased lg:pb-24 bg-secondary dark:bg-gray-900">
         <header
           className={`bg-black w-full h-[460px] xl:h-[537px] bg-no-repeat bg-cover bg-center bg-blend-darken relative`}
         >
@@ -135,7 +159,7 @@ export default function ProjectSlugRoute(
           )}
 
           <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80"></div>
-          <div className="absolute top-20 left-1/2 px-4 mx-auto w-full max-w-screen-xl -translate-x-1/2 xl:top-1/2 xl:-translate-y-1/2 xl:px-0">
+          <div className="absolute w-full max-w-screen-xl px-4 mx-auto -translate-x-1/2 top-20 left-1/2 xl:top-1/2 xl:-translate-y-1/2 xl:px-0">
             <span className="block mb-4 text-primary">
               Published at{' '}
               <a
@@ -146,15 +170,15 @@ export default function ProjectSlugRoute(
               </a>{' '}
               on {formatDate(post._createdAt)}
             </span>
-            <h1 className="mb-4 max-w-4xl text-2xl font-extrabold leading-none text-accent sm:text-3xl lg:text-4xl">
+            <h1 className="max-w-4xl mb-4 text-2xl font-extrabold leading-none text-accent sm:text-3xl lg:text-4xl">
               {post.title}
             </h1>
             <p className="text-lg font-normal text-white">{post.excerpt}</p>
           </div>
         </header>
-        <div className="flex relative z-20 justify-between p-6 -m-36 mx-4 max-w-screen-xl bg-black rounded-lg xl:-m-32 xl:p-9 xl:mx-auto">
-          <article className="w-full max-w-none text-white format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-            <div className="prose prose-invert pt-8 prose-slate mx-auto">
+        <div className="relative z-20 flex justify-between max-w-screen-xl p-6 mx-4 bg-black rounded-lg -m-36 xl:-m-32 xl:p-9 xl:mx-auto">
+          <article className="w-full text-white max-w-none format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+            <div className="pt-8 mx-auto prose prose-invert prose-slate">
               <PortableText value={post.body} components={components} />
             </div>
           </article>
@@ -164,7 +188,7 @@ export default function ProjectSlugRoute(
               Sidebar
             </h3>
             <div className="mb-8">
-              <h4 className="mb-2 text-sm font-bold text-gray-900 dark:text-white uppercase">
+              <h4 className="mb-2 text-sm font-bold text-gray-900 uppercase dark:text-white">
                 Flowbite News morning headlines
               </h4>
               <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
@@ -181,19 +205,19 @@ export default function ProjectSlugRoute(
               </button>
             </div>
             <div className="mb-12">
-              <h4 className="mb-4 text-sm font-bold text-gray-900 dark:text-white uppercase">
+              <h4 className="mb-4 text-sm font-bold text-gray-900 uppercase dark:text-white">
                 Latest news
               </h4>
-              <div className="mb-6 flex items-center">
+              <div className="flex items-center mb-6">
                 <a href="#" className="shrink-0">
                   <img
                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/image-1.png"
-                    className="mr-4 max-w-full w-24 h-24 rounded-lg"
+                    className="w-24 h-24 max-w-full mr-4 rounded-lg"
                     alt="Image 1"
                   />
                 </a>
                 <div>
-                  <h5 className="mb-2 text-lg font-bold leading-tight dark:text-white text-gray-900">
+                  <h5 className="mb-2 text-lg font-bold leading-tight text-gray-900 dark:text-white">
                     Our first office
                   </h5>
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -207,16 +231,16 @@ export default function ProjectSlugRoute(
                   </a>
                 </div>
               </div>
-              <div className="mb-6 flex items-center">
+              <div className="flex items-center mb-6">
                 <a href="#" className="shrink-0">
                   <img
                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/image-2.png"
-                    className="mr-4 max-w-full w-24 h-24 rounded-lg"
+                    className="w-24 h-24 max-w-full mr-4 rounded-lg"
                     alt="Image 2"
                   />
                 </a>
                 <div>
-                  <h5 className="mb-2 text-lg font-bold leading-tight dark:text-white text-gray-900">
+                  <h5 className="mb-2 text-lg font-bold leading-tight text-gray-900 dark:text-white">
                     Enterprise Design tips
                   </h5>
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -230,16 +254,16 @@ export default function ProjectSlugRoute(
                   </a>
                 </div>
               </div>
-              <div className="mb-6 flex items-center">
+              <div className="flex items-center mb-6">
                 <a href="#" className="shrink-0">
                   <img
                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/image-3.png"
-                    className="mr-4 max-w-full w-24 h-24 rounded-lg"
+                    className="w-24 h-24 max-w-full mr-4 rounded-lg"
                     alt="Image 3"
                   />
                 </a>
                 <div>
-                  <h5 className="mb-2 text-lg font-bold leading-tight dark:text-white text-gray-900">
+                  <h5 className="mb-2 text-lg font-bold leading-tight text-gray-900 dark:text-white">
                     Partnered up with Google
                   </h5>
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -257,7 +281,7 @@ export default function ProjectSlugRoute(
             <div>
               <a
                 href="#"
-                className="flex justify-center items-center mb-3 w-full h-48 bg-gray-100 rounded-lg dark:bg-gray-700"
+                className="flex items-center justify-center w-full h-48 mb-3 bg-gray-100 rounded-lg dark:bg-gray-700"
               >
                 <svg
                   aria-hidden="true"
