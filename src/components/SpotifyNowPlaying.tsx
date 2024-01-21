@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import getTrackItem from '~/lib/SpotifyAPI'
@@ -72,12 +73,12 @@ const SpotifyNowPlaying = () => {
               </p>
               <div className="flex flex-col items-center gap-4 mt-4">
                 <SpotifyLogo />
-                <a
-                  href="#"
-                  className="text-xs text-center text-black underline "
+                <Link
+                  href="/post/how-i-built-a-spotify-now-playing-component-for-my-website"
+                  className="text-xs text-center text-black underline"
                 >
                   See how this works
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -107,12 +108,12 @@ const SpotifyNowPlaying = () => {
               </p>
               <div className="flex flex-col items-center gap-4 mt-4">
                 <SpotifyLogo />
-                <a
-                  href="#"
-                  className="text-xs text-center text-black underline "
+                <Link
+                  href="/post/how-i-built-a-spotify-now-playing-component-for-my-website"
+                  className="text-xs text-center text-black underline"
                 >
                   See how this works
-                </a>
+                </Link>
               </div>
             </div>
           </div>
