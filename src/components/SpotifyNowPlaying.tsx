@@ -29,7 +29,7 @@ const SpotifyNowPlaying = () => {
       <div>
         {loading && (
           <div>
-            <div className="p-8 rounded-lg shadow-md bg-primary w-80">
+            <div className="max-w-sm p-8 rounded-lg shadow bg-primary shrink-0 grow-0">
               <h3 className="mb-6 text-lg font-bold text-center text-black">
                 Loading...
               </h3>
@@ -49,7 +49,7 @@ const SpotifyNowPlaying = () => {
         )}
         {result.isPlaying ? (
           <div>
-            <div className="p-8 rounded-lg shadow-md bg-primary w-80">
+            <div className="max-w-sm p-8 rounded-lg shadow bg-primary shrink-0 grow-0">
               <h3 className="mb-6 text-lg font-bold text-center text-black">
                 I&apos;m currently hearing this:
               </h3>
@@ -84,7 +84,7 @@ const SpotifyNowPlaying = () => {
           </div>
         ) : (
           <div>
-            <div className="p-8 rounded-lg shadow-md bg-primary w-80">
+            <div className="max-w-sm p-8 rounded-lg shadow bg-primary shrink-0 grow-0">
               <h3 className="mb-6 text-lg font-bold text-center text-black">
                 One of my recent favorite tracks:
               </h3>

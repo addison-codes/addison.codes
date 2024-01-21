@@ -3,6 +3,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useLiveQuery } from 'next-sanity/preview'
+import { useEffect } from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 
 import Card from '~/components/Card'
@@ -20,6 +21,8 @@ import { getClient } from '~/lib/sanity.client'
 import { getPosts, type Post, postsQuery } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 
+const devToPosts = await getMyPosts()
+
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
     sanityPosts: Post[]
@@ -27,9 +30,6 @@ export const getStaticProps: GetStaticProps<
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const sanityPosts = await getPosts(client)
-
-  const devToPosts = await getMyPosts()
-  console.log('devposts', devToPosts)
 
   return {
     props: {
@@ -55,6 +55,32 @@ export default function IndexPage(
     loop: true,
     delaySpeed: 2000,
   })
+
+  useEffect(() => {
+    const sortedDevPosts = devToPosts.map(
+      (post: {
+        title: string
+        description: string
+        url: string
+        cover_image: string
+        published_at: string
+        slug: string
+        devPost: boolean
+      }) => {
+        return {
+          title: post.title,
+          excerpt: post.description,
+          url: post.url,
+          mainImage: post.cover_image,
+          _createdAt: post.published_at,
+          slug: post.slug,
+          devPost: true,
+        }
+      },
+    )
+
+    posts.push(...sortedDevPosts)
+  }, [posts])
 
   return (
     <>
@@ -123,17 +149,17 @@ export default function IndexPage(
             </div>
           </div>
         </section>
-        <ParallaxText baseVelocity={3}>
+        <ParallaxText baseVelocity={2}>
           <span className="text-primary">
             Development Design Software Architecture&nbsp;
           </span>
         </ParallaxText>
-        <ParallaxText baseVelocity={-3}>
+        <ParallaxText baseVelocity={-2}>
           <span className="text-accent">
             ソフトウェア開発 | ウェブデザイン | プログラミング
           </span>
         </ParallaxText>
-        <ParallaxText baseVelocity={2}>
+        <ParallaxText baseVelocity={1}>
           <span className="text-secondary">Addison.Codes Addison.Codes</span>
         </ParallaxText>
         <Section heading="Latest Things I've Written">

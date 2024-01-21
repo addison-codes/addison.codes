@@ -5,6 +5,7 @@ const config = {
       { hostname: 'cdn.sanity.io' },
       { hostname: 'i.scdn.co' },
       { hostname: 'source.unsplash.com' },
+      { hostname: 'media.dev.to' },
     ],
   },
 }
