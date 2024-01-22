@@ -116,11 +116,11 @@ export default function IndexPage(
           </h1>
           <div className="flex mt-20 justify-evenly">
             <div className="flex flex-wrap justify-center">
-              <div className="border-4 rounded-full border-accent -rotate-6">
+              <div className="border-4 rounded-full border-accent">
                 <Image
                   width={320}
                   height={320}
-                  src="/hoodiePic.jpg"
+                  src="/AddisonPicDark.jpg"
                   alt="Addison in a hoodie"
                   className="h-auto max-w-full align-middle border-none rounded-full shadow"
                 />
