@@ -31,6 +31,8 @@ export interface Post {
   title?: string
   slug: Slug
   excerpt?: string
-  mainImage?: ImageAsset
+  mainImage?: string | any
   body: PortableTextBlock[]
+  devPost?: boolean
+  url?: string
 }

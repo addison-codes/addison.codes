@@ -11,7 +11,7 @@ const Section = (props: Props) => {
   return (
     <section className="container mx-auto mt-24">
       <Heading>{props.heading}</Heading>
-      <div className="flex mx-auto gap-8">{props.children}</div>
+      <div className="flex flex-wrap gap-8 mx-auto">{props.children}</div>
     </section>
   )
 }
