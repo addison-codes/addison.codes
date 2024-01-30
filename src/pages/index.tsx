@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { get } from 'http'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -7,35 +8,41 @@ import { useEffect } from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 
 import Card from '~/components/Card'
-import Container from '~/components/Container'
 import Footer from '~/components/Footer'
-import Heading from '~/components/Heading'
 import Logo from '~/components/Logo'
 import ParallaxText from '~/components/ParallaxText'
 import Section from '~/components/Section'
 import SpotifyNowPlaying from '~/components/SpotifyNowPlaying'
-import Welcome from '~/components/Welcome'
 import getMyPosts from '~/lib/DevToAPI'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import { getPosts, type Post, postsQuery } from '~/lib/sanity.queries'
+// import getRecentlyPlayed from '~/lib/SteamAPI'
 import type { SharedPageProps } from '~/pages/_app'
-
-const devToPosts = await getMyPosts()
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
     sanityPosts: Post[]
+    devToPosts: any[]
+    // steamData: any
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const sanityPosts = await getPosts(client)
+  const devToPosts = await getMyPosts()
+  // const steamData = await fetch(`http://localhost:3000/api/steam`).then(
+  //   (res) => {
+  //     return res.json()
+  //   },
+  // )
 
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
       sanityPosts,
+      devToPosts,
+      // steamData,
     },
   }
 }
@@ -57,15 +64,18 @@ export default function IndexPage(
   })
 
   useEffect(() => {
-    const sortedDevPosts = devToPosts.map(
+    const sortedDevPosts = props.devToPosts.map(
       (post: {
         title: string
         description: string
         url: string
         cover_image: string
         published_at: string
-        slug: string
+        slug: any
         devPost: boolean
+        _type?: string
+        _id?: any
+        body?: any
       }) => {
         return {
           title: post.title,
@@ -75,12 +85,17 @@ export default function IndexPage(
           _createdAt: post.published_at,
           slug: post.slug,
           devPost: true,
+          _type: 'post',
+          _id: post._id,
+          body: post.body,
         }
       },
     )
 
     posts.push(...sortedDevPosts)
-  }, [posts])
+  }, [posts, props.devToPosts])
+
+  // console.log(props.steamData.response.games)
 
   return (
     <>
