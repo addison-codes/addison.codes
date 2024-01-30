@@ -11,10 +11,11 @@ export default function Card({ post }: { post: Post }) {
         <a href={post.url}>
           {post.mainImage ? (
             <Image
-              className="rounded-t-md"
+              className="rounded-t-md min-h-[230px]"
               src={post.mainImage}
               height={300}
               width={500}
+              objectFit="cover"
               alt=""
             />
           ) : (

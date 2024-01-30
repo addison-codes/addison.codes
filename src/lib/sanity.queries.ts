@@ -25,8 +25,8 @@ export const postSlugsQuery = groq`
 `
 
 export interface Post {
-  _type: 'post'
-  _id: string
+  _type: any
+  _id: any
   _createdAt: string
   title?: string
   slug: Slug
