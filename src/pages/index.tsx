@@ -135,7 +135,7 @@ export default function IndexPage(
                 <Image
                   width={320}
                   height={320}
-                  src="/AddisonPicDark.jpg"
+                  src="/AddisonPicNew.jpg"
                   alt="Addison in a hoodie"
                   className="h-auto max-w-full align-middle border-none rounded-full shadow"
                 />
